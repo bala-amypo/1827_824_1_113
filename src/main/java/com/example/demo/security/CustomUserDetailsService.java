@@ -2,6 +2,6 @@ package com.example.demo.security;
 
 
 
-public class CustomUserDetalis{
+public class CustomUserDetalisService{
     
 }

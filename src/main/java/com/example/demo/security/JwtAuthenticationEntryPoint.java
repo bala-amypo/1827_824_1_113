@@ -1,7 +1,6 @@
-package com.example.demo.security;
 
 
 
-public class JwtAuthentication{
+public class JwtAuthenticationEntryPoint{
     
 }

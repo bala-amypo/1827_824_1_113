@@ -89,7 +89,7 @@ public void setCreatedAt(LocalDateTime createdAt) {
 }
 public StudentProfile(Long id,String studentId,String name,String email,String program,int yearLevel,Boolean isRepeatOffender,LocalDateTime createdAt)
 {
-    this.is=id;
+    this.id=id;
     this.studentId=studentId;
     this.name=name;
     this.email=email;
