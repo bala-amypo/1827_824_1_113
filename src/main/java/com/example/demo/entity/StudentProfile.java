@@ -15,13 +15,12 @@ public class StudentProfile {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unquie = false)
+    @Column(unique = true)
     private String studentId;
 
-    @Column(nullable = false)
     private String name;
-
-    @Column(nullable = false)
+                       
+    @Column(unique = true)
     private String email;
 
     private String program;
