@@ -11,28 +11,80 @@ import jakarta.persistence.Column;
 
 public class StudentProfile {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+private Long id;
+@Column(unique=true)
+private String studentId;
+private String name;
+@Column(unique=true)
+private String email;
+private String program;
+private Integer yearLevel;
+private Boolean isRepeatOffender;
+private LocalDateTime createdAt;
 
-    @Column(unique = true)
-    private String studentId;
+public Long getId() {
+    return id;
+}
 
-    private String name;
-                       
-    @Column(unique = true)
-    private String email;
+public void setId(Long id) {
+    this.id = id;
+}
 
-    private String program;
+public String getStudentId() {
+    return studentId;
+}
 
-    private Integer yearLevel;
+public void setStudentId(String studentId) {
+    this.studentId = studentId;
+}
 
-    private Boolean isRepeatOffender = false;
+public String getName() {
+    return name;
+}
 
-    private LocalDateTime createdAt;
+public void setName(String name) {
+    this.name = name;
+}
 
-    
-    }
+public String getEmail() {
+    return email;
+}
+
+public void setEmail(String email) {
+    this.email = email;
+}
+
+public String getProgram() {
+    return program;
+}
+
+public void setProgram(String program) {
+    this.program = program;
+}
+
+public Integer getYearLevel() {
+    return yearLevel;
+}
+
+public void setYearLevel(Integer yearLevel) {
+    this.yearLevel = yearLevel;
+}
+
+public Boolean getIsRepeatOffender() {
+    return isRepeatOffender;
+}
+
+public void setIsRepeatOffender(Boolean isRepeatOffender) {
+    this.isRepeatOffender = isRepeatOffender;
+}
+
+public LocalDateTime getCreatedAt() {
+    return createdAt;
+}
+
+public void setCreatedAt(LocalDateTime createdAt) {
+    this.createdAt = createdAt;
+}
 
     
 }
