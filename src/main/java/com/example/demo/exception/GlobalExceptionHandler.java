@@ -1,4 +1,6 @@
 package com.example.demo.exception;
 
 
-public class
+public class GlobalExceptionHandler{
+    
+}
