@@ -8,12 +8,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Column;
 
 @Entity
-@Table(name = "users")
-public class StudentProfile {
+@Table(name = "StudentProfile")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String 
 
     @Column(unique = true, nullable = false)
     private String email;
@@ -21,19 +23,22 @@ public class StudentProfile {
     @Column(nullable = false)
     private String password;
 
-    @Column(nullable = false)
-    private String role;
+    
 
 
-    public StudentProfile() {
+
+    // No-argument constructor
+    public () {
     }
 
+    // Parameterized constructor
     public User(String email, String password, String role) {
         this.email = email;
         this.password = password;
         this.role = role;
     }
 
+    // Getters and Setters
     public Long getId() {
         return id;
     }
