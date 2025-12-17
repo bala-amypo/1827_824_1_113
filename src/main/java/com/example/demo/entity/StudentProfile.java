@@ -40,14 +40,9 @@ public class StudentProfile {
 
     private Boolean isRepeatOffender = false;
 
-    private l createdAt;
+    private LocalDateTime createdAt;
 
-    @OneToMany(mappedBy = "studentProfile")
-    private List<IntegrityCase> integrityCases;
-
-    @PrePersist
-    public void onCreate() {
-        this.createdAt = LocalDateTime.now();
+    
     }
 
     
