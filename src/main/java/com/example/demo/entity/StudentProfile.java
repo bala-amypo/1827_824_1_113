@@ -87,6 +87,20 @@ public LocalDateTime getCreatedAt() {
 public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
 }
+public StudentProfile(Long id,String studentId,String name,String email,String program,int yearLevel,Boolean isRepeatOffender,LocalDateTime )
+{
+    this.is=id;
+    this.studentId=studentId;
+    this.name=name;
+    this.email=email;
+    this.program=program;
+    this.yearLevel=yearLevel;
+    this.isRepeatOffender=isRepeatOffender;
+    this.createdAt=createdAt;
+}
+public StudentProfile()
+{
 
+}
     
 }
