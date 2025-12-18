@@ -1,9 +1,9 @@
-import.com.example.demo.entity;
+import com.example.demo.entity;
 import jakarta.persistence.Entity;
 import jarkarta.persistence.Id;
 @Entity
 public class IntegrityCase {
-
+    @Id
     private Long id;                     
     private String courseCode;
     private String studentProfile;
