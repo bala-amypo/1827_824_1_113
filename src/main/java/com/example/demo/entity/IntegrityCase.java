@@ -75,17 +75,13 @@ public class IntegrityCase {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-    public IntegrityCase(Long id,)
+    public IntegrityCase(Long id,StudentProfile studentProfile,String courseCode,String instructorName,String status,LocalDate incidentDate,LocalDateTime createdAt)
     
 {
-    this.id=id;
-    this.studentId=studentId;
-    this.name=name;
-    this.email=email;
-    this.program=program;
-    this.yearLevel=yearLevel;
-    this.isRepeatOffender=isRepeatOffender;
-    this.createdAt=createdAt;
+  this.id = id; 
+  this.studentProfile = studentProfile; 
+  this.courseCode = courseCode;
+  
 }
 public StudentProfile()
 {
