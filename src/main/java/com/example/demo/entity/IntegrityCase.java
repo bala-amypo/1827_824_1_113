@@ -47,9 +47,10 @@ public class IntegrityCase{
       public void setincidentDate(string incidentDate){
         this.incidentDate=incidentDate;
      }
-      public  get(){
-        return incidentDate;
+     public LocalDateTime getcreatedAt(){
+        return createdAt;
      }
+     
 
 
 }
