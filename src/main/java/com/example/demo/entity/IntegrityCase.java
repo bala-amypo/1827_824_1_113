@@ -32,6 +32,12 @@ public class IntegrityCase{
       public string getdescription(){
         return description;
      }
-     public
+     public void setdescription(string descripition){
+        this.descripiton=descripition;
+     }
+     public string getstatus(){
+        return status;
+     }
+
 
 }
