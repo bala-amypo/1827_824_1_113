@@ -1,19 +1,56 @@
-import com.example.demo.entity;
+package com.example.demo.entity;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.ManyToOne;
+
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 public class IntegrityCase {
+
     @Id
-    private Long id;                     
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String courseCode;
-    private String studentProfile;
+
+    @ManyToOne
+    private StudentProfile studentProfile;
+
     private String instructorName;
     private String description;
-    private String status;               
+    private String status;
     private LocalDate incidentDate;
     private LocalDateTime createdAt;
 
-    
+    // ✅ No-arg constructor (required by JPA)
+    public IntegrityCase() {
+    }
+
+    // ✅ Parameterized constructor
+    public IntegrityCase(Long id,
+                         StudentProfile studentProfile,
+                         String courseCode,
+                         String instructorName,
+                         String description,
+                         String status,
+                         LocalDate incidentDate,
+                         LocalDateTime createdAt) {
+        this.id = id;
+        this.studentProfile = studentProfile;
+        this.courseCode = courseCode;
+        this.instructorName = instructorName;
+        this.description = description;
+        this.status = status;
+        this.incidentDate = incidentDate;
+        this.createdAt = createdAt;
+    }
+
+    // ✅ Getters and Setters
     public Long getId() {
         return id;
     }
@@ -22,20 +59,20 @@ public class IntegrityCase {
         this.id = id;
     }
 
-    public StudentProfile getStudentProfile() {
-        return studentProfile;
-    }
-
-    public void setStudentProfile(StudentProfile studentProfile) {
-        this.studentProfile = studentProfile;
-    }
-
     public String getCourseCode() {
         return courseCode;
     }
 
     public void setCourseCode(String courseCode) {
         this.courseCode = courseCode;
+    }
+
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
+    }
+
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
     }
 
     public String getInstructorName() {
@@ -77,23 +114,4 @@ public class IntegrityCase {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
-    public IntegrityCase(Long id,StudentProfile studentProfile,String courseCode,String instructorName,String status,LocalDate incidentDate,LocalDateTime createdAt)
-    
-{
-  this.id = id; 
-  this.studentProfile = studentProfile; 
-  this.courseCode = courseCode;
-  this.instructorName = instructorName;
-   this.description = description;
-   this.status = status;
-   this.incidentDate = incidentDate;
-   this.createdAt = createdAt;
-    
-  
-
-}
-public IntegrityCase()
-{
-
-}
 }
