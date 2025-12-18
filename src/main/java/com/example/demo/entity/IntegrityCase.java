@@ -30,7 +30,7 @@ public class IntegrityCase{
         this.instructorname=instuctorName;
      }
       public string getdescription(){
-        return instructorName;
+        return description;
      }
 
 }
