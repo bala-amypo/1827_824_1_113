@@ -81,7 +81,14 @@ public class IntegrityCase {
   this.id = id; 
   this.studentProfile = studentProfile; 
   this.courseCode = courseCode;
+  this.instructorName = instructorName;
+   this.description = description;
+   this.status = status;
+   this.incidentDate = incidentDate;
+   this.createdAt = createdAt;
+    
   
+
 }
 public StudentProfile()
 {
