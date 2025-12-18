@@ -27,11 +27,9 @@ public class IntegrityCase {
     private LocalDate incidentDate;
     private LocalDateTime createdAt;
 
-    // ✅ No-arg constructor (required by JPA)
     public IntegrityCase() {
     }
 
-    // ✅ Parameterized constructor
     public IntegrityCase(Long id,
                          StudentProfile studentProfile,
                          String courseCode,
@@ -50,7 +48,6 @@ public class IntegrityCase {
         this.createdAt = createdAt;
     }
 
-    // ✅ Getters and Setters
     public Long getId() {
         return id;
     }
