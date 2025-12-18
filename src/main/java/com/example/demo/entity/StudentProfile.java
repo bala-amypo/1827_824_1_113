@@ -9,8 +9,8 @@ import jakarta.persistence.Column;
 
 
 @Entity
-
 public class StudentProfile {
+
 @Id
 @GeneratedValue(strategy=GenerationType.IDENTITY)
 private Long id;
@@ -68,7 +68,7 @@ public Integer getYearLevel() {
     return yearLevel;
 }
 
-public void setYearLevel(Interger yearLevel)
+public void setYearLevel(Interger yearLevel){
     this.yearLevel = yearLevel;
 }
 
@@ -93,7 +93,7 @@ public void setCreatedAt(LocalDateTime createdAt) {
                          String email,
                          String program,
                          Interger yearLevel,
-                         Boolean isRepeatOffender
+                         Boolean isRepeatOffender,
                          LocalDateTime createdAt) {
                               this.id = id;
                               this.studentId = studentId;

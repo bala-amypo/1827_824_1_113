@@ -65,14 +65,15 @@ public class EvidenceRecord {
     public void setSubmittedAt(LocalDateTime submittedAt) {
         this.submittedAt = submittedAt;
     }
-    public EvidenceRecord()(
+    public EvidenceRecord(
                          Long id,
                          String integrityCase,
                          String evidenceType,
                          String submittedBy,
                          String content,
                          String submittedBy,
-                         LocalDateTime submittedAt) {
+                         LocalDateTime submittedAt)
+                          {
                               this.id = id;
                                this.integrityCase = integrityCase;
                                 this.evidenceType = evidenceType;
