@@ -3,6 +3,6 @@ package com.example.demo.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.example.demo.EntityClass.StudentProfile;
 
-public interface StudentRepository extends JpaRepository<StudentProfile, Long>() {
+public interface StudentRepository extends JpaRepository<StudentProfile, Long> 
 
-}
+
