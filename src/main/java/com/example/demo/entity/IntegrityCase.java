@@ -1,6 +1,6 @@
 import com.example.demo.entity;
 import jakarta.persistence.Entity;
-import jarkarta.persistence.Id;
+import jakarta.persistence.Id;
 @Entity
 public class IntegrityCase {
     @Id
@@ -92,7 +92,7 @@ public class IntegrityCase {
   
 
 }
-public StudentProfile()
+public IntegrityCase()
 {
 
 }
