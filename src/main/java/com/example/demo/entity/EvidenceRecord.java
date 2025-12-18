@@ -1,5 +1,6 @@
 import java.time.LocalDateTime;
 
+@En
 public class EvidenceRecord {
 
     private Long id;                         
@@ -65,19 +66,18 @@ public class EvidenceRecord {
     public EvidenceRecord()(
                          Long id,
                          String integrityCase,
-                         String email,
-                         String program,
-                         Interger yearLevel,
-                         Boolean isRepeatOffender
-                         LocalDateTime createdAt) {
+                         String evidenceType,
+                         String submittedBy,
+                         String content,
+                         String submittedBy,
+                         LocalDateTime submittedAt) {
                               this.id = id;
-                              this.studentId = studentId;
-                               this.name = name;
-                                this.email = email;
-                                 this.program = program;
-                                this.yearLevel = yearLevel;
-                                 this.isRepeatOffender = isRepeatOffender;
-                                  this.createdAt = createdAt;
+                               this.integrityCase = integrityCase;
+                                this.evidenceType = evidenceType;
+                                 this.content = content;
+                                this.submittedBy = submittedBy;
+                                this.submittedAt = submittedAt;
+                               
        
     }
     public EvidenceRecord(){
