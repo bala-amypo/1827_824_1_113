@@ -68,7 +68,7 @@ public Integer getYearLevel() {
     return yearLevel;
 }
 
-public void setYearLevel(Interger yearLevel){
+public void setYearLevel(Integer yearLevel){
     this.yearLevel = yearLevel;
 }
 
@@ -92,7 +92,7 @@ public void setCreatedAt(LocalDateTime createdAt) {
                          String name,
                          String email,
                          String program,
-                         Interger yearLevel,
+                         Integer yearLevel,
                          Boolean isRepeatOffender,
                          LocalDateTime createdAt) {
                               this.id = id;
