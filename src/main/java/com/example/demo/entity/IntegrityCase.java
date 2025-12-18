@@ -41,7 +41,15 @@ public class IntegrityCase{
       public void setstatus(string status){
         this.status=status;
      }
-     public 
+     public Localdate getincidentDate(){
+        return incidentDate;
+     }
+      public void setincidentDate(string incidentDate){
+        this.incidentDate=incidentDate;
+     }
+      public  get(){
+        return incidentDate;
+     }
 
 
 }
