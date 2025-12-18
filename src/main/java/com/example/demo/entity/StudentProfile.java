@@ -68,7 +68,7 @@ public Integer getYearLevel() {
     return yearLevel;
 }
 
-public void setYearLevel(Integer yearLevel) {
+public void setYearLevel(Interger yearLevel)
     this.yearLevel = yearLevel;
 }
 
@@ -88,20 +88,16 @@ public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
 }
  public IntegrityCase(Long id,
-                         StudentProfile studentProfile,
-                         String courseCode,
-                         String instructorName,
-                         String description,
-                         String status,
-                         LocalDate incidentDate,
+                         String studentId,
+                         String name,
+                         String email,
+                         String program,
+                         Interger yearLevel,
+                         Boolean isRepeatOffender
                          LocalDateTime createdAt) {
-        this.id = id;
-        this.studentProfile = studentProfile;
-        this.courseCode = courseCode;
-        this.instructorName = instructorName;
-        this.description = description;
-        this.status = status;
-        this.incidentDate = incidentDate;
-        this.createdAt = createdAt;
+                              this.id = id;
+                              this.studentId = studentId;
+                               this.name = name;
+       
     }
 }
