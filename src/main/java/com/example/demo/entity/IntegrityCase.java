@@ -38,6 +38,10 @@ public class IntegrityCase{
      public string getstatus(){
         return status;
      }
+      public void setstatus(string status){
+        this.status=status;
+     }
+     public 
 
 
 }
