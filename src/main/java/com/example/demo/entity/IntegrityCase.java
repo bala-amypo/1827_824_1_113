@@ -20,6 +20,12 @@ public class IntegrityCase{
      public string getCoursecode(){
         return coursecode;
      }
-     public void setCoursecode(string coursecode)
+     public void setCoursecode(string coursecode){
+        this.coursecode=coursecode;
+     }
+     public string getInstructorName(){
+        return instructorName;
+     }
+     public void setIns
 
 }
