@@ -15,22 +15,19 @@ public class PenaltyAction {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Many penalties can belong to one IntegrityCase
+    
     @ManyToOne
     private IntegrityCase integrityCase;
 
-    // WARNING / GRADE_REDUCTION / ZERO_MARK / SUSPENSION
     private String penaltyType;
 
     private String details;
     private String issuedBy;
     private LocalDateTime issuedAt;
 
-    // ✅ No-arg constructor (required by JPA)
     public PenaltyAction() {
     }
 
-    // ✅ Parameterized constructor
     public PenaltyAction(Long id,
                          IntegrityCase integrityCase,
                          String penaltyType,
