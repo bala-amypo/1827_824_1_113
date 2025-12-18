@@ -1,8 +1,10 @@
 import java.time.LocalDateTime;
+import jakarta.persistence.Entity;
+import jarkarta.persistence.Id;
 
-@En
+@Entity
 public class EvidenceRecord {
-
+    @Id
     private Long id;                         
 
     
