@@ -5,7 +5,7 @@ public class EvidenceRecord {
     private Long id;                         
 
     
-    private IntegrityCase integrityCase;
+    private String integrityCase;
 
     
     private String evidenceType;
@@ -23,11 +23,11 @@ public class EvidenceRecord {
         this.id = id;
     }
 
-    public IntegrityCase getIntegrityCase() {
+    public String getIntegrityCase() {
         return integrityCase;
     }
 
-    public void setIntegrityCase(IntegrityCase integrityCase) {
+    public void setIntegrityCase(String integrityCase) {
         this.integrityCase = integrityCase;
     }
 
@@ -62,9 +62,9 @@ public class EvidenceRecord {
     public void setSubmittedAt(LocalDateTime submittedAt) {
         this.submittedAt = submittedAt;
     }
-    public StudentProfile(
-                         String studentId,
-                         String name,
+    public EvidenceRecord()(
+                         Long id,
+                         String integrityCase,
                          String email,
                          String program,
                          Interger yearLevel,
@@ -80,7 +80,7 @@ public class EvidenceRecord {
                                   this.createdAt = createdAt;
        
     }
-    public StudentProfile(){
+    public EvidenceRecord(){
 
     }
 
