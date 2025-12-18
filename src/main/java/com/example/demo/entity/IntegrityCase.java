@@ -26,6 +26,11 @@ public class IntegrityCase{
      public string getInstructorName(){
         return instructorName;
      }
-     public void setIns
+     public void setInstructorname(string instructorName){
+        this.instructorname=instuctorName;
+     }
+      public string getdescription(){
+        return instructorName;
+     }
 
 }
