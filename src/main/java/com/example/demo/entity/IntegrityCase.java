@@ -1,5 +1,7 @@
-
-
+import.com.example.demo.entity;
+import jakarta.persistence.Entity;
+import jarkarta.persistence.Id;
+@Entity
 public class IntegrityCase {
 
     private Long id;                     
