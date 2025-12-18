@@ -2,7 +2,7 @@ import java.time.LocalDateTime;
 
 public class EvidenceRecord {
 
-    private Long id;                         // PK
+    private Long id;                         
 
     
     private IntegrityCase integrityCase;
@@ -62,5 +62,26 @@ public class EvidenceRecord {
     public void setSubmittedAt(LocalDateTime submittedAt) {
         this.submittedAt = submittedAt;
     }
-    
+    public StudentProfile(
+                         String studentId,
+                         String name,
+                         String email,
+                         String program,
+                         Interger yearLevel,
+                         Boolean isRepeatOffender
+                         LocalDateTime createdAt) {
+                              this.id = id;
+                              this.studentId = studentId;
+                               this.name = name;
+                                this.email = email;
+                                 this.program = program;
+                                this.yearLevel = yearLevel;
+                                 this.isRepeatOffender = isRepeatOffender;
+                                  this.createdAt = createdAt;
+       
+    }
+    public StudentProfile(){
+
+    }
+
 }

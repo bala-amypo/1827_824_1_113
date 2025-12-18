@@ -87,7 +87,7 @@ public LocalDateTime getCreatedAt() {
 public void setCreatedAt(LocalDateTime createdAt) {
     this.createdAt = createdAt;
 }
- public IntegrityCase(Long id,
+ public StudentProfile(
                          String studentId,
                          String name,
                          String email,
@@ -98,6 +98,14 @@ public void setCreatedAt(LocalDateTime createdAt) {
                               this.id = id;
                               this.studentId = studentId;
                                this.name = name;
+                                this.email = email;
+                                 this.program = program;
+                                this.yearLevel = yearLevel;
+                                 this.isRepeatOffender = isRepeatOffender;
+                                  this.createdAt = createdAt;
        
+    }
+    public StudentProfile(){
+
     }
 }
