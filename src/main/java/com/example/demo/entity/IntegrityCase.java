@@ -4,7 +4,7 @@ public class IntegrityCase {
 
     private Long id;                     
     private String courseCode;
-    private 
+    private String studentProfile;
     private String instructorName;
     private String description;
     private String status;               
@@ -75,4 +75,20 @@ public class IntegrityCase {
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
     }
+    public IntegrityCase(Long id,)
+    
+{
+    this.id=id;
+    this.studentId=studentId;
+    this.name=name;
+    this.email=email;
+    this.program=program;
+    this.yearLevel=yearLevel;
+    this.isRepeatOffender=isRepeatOffender;
+    this.createdAt=createdAt;
+}
+public StudentProfile()
+{
+
+}
 }
