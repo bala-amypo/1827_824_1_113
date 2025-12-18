@@ -10,6 +10,16 @@ public class IntegrityCase{
     private string status;
     private LocalDate incidentDate;
     private LocalDateTime createdAt;
-    
+
+     public Long getId(){
+        return id;
+     }
+     public void setId(Long id){
+        this.id=id;
+     }
+     public string getCoursecode(){
+        return coursecode;
+     }
+     public void setCoursecode(string coursecode)
 
 }
