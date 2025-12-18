@@ -50,7 +50,7 @@ public class IntegrityCase{
      public LocalDateTime getcreatedAt(){
         return createdAt;
      }
-     public StudentProfile(Long id,String studentId,String name,String email,String program,int yearLevel,Boolean isRepeatOffender,LocalDateTime createdAt)
+     public StudentProfile(Long id,string coursecode,string instructorName,string descripition,string status,string incidentDate,Boolean isRepeatOffender,LocalDateTime createdAt)
 {
     this.id=id;
     this.studentId=studentId;
