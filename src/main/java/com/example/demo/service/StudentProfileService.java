@@ -6,5 +6,6 @@ import jakarta.persistence.Service;
 public interface StudentProfileservice{
     public StudentProfile createStudent(StudentProfile dto)
     public StudentProfile getStudentById(Long id)
-    po=
+    public StudentProfile getAllStudents()
+    public StudentProfile updateRepeatOffenderStatus(Long studentId)
 }
