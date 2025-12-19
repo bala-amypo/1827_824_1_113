@@ -3,6 +3,8 @@ import com.example.demo.entity.StudentProfile;
 import jakarta.persistence.Service;
 
 @Service
-public interface StudentProfile{
-    public create
+public interface StudentProfileservice{
+    public StudentProfile createStudent(StudentProfile dto)
+    public StudentProfile getStudentById(Long id)
+    po=
 }
