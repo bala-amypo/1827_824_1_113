@@ -7,7 +7,7 @@ public interface EvidenceRecordService {
 
     EvidenceRecord submitEvidence(EvidenceRecord evidenceRecord);
 
-    List<EvidenceRecord> getEvidenceByCase(Long CaseId);
+    List<EvidenceRecord> getEvidenceByCase(Long integrityCaseId);
 
     EvidenceRecord getEvidenceById(Long id);
 
