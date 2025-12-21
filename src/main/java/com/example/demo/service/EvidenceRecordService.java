@@ -5,11 +5,11 @@ import com.example.demo.entity.EvidenceRecord;
 
 public interface EvidenceRecordService {
 
-    EvidenceRecord saveEvidenceRecord(EvidenceRecord evidenceRecord);
+    EvidenceRecord submitEvidence(EvidenceRecord evidenceRecord);
 
-    EvidenceRecord getEvidenceRecordById(Long id);
+    List<EvidenceRecord> getEvidenceByCase(Long integrityCaseId);
 
-    List<EvidenceRecord> getAllEvidenceRecords();
+    EvidenceRecord getEvidenceById(Long id);
 
-    List<EvidenceRecord> getEvidenceRecordsByIntegrityCaseId(Long integrityCaseId);
+    List<EvidenceRecord> getAllEvidence();
 }
