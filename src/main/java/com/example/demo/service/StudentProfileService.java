@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.StudentProfile;
-
 import java.util.List;
 
 public interface StudentProfileService {
@@ -14,5 +13,5 @@ public interface StudentProfileService {
 
     void updateRepeatOffenderStatus(Long studentId);
 
-    StudentProfile findByStudentIdentifier(String studentId);
+    StudentProfile getByStudentIdentifier(String studentId);
 }

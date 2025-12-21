@@ -1,14 +1,13 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.RepeatOffenderRecord;
-
 import java.util.List;
 
 public interface RepeatOffenderRecordService {
 
-    void refreshRepeatOffenderData(Long studentId);
+    RepeatOffenderRecord addRecord(RepeatOffenderRecord record);
 
-    RepeatOffenderRecord getRecordByStudent(Long studentId);
+    List<RepeatOffenderRecord> getByStudent(Long studentId);
 
-    List<RepeatOffenderRecord> getAllRepeatOffenders();
+    List<RepeatOffenderRecord> getAll();
 }
