@@ -1,6 +1,20 @@
+package com.example.demo.controller;
+
+import com.example.demo.entity.EvidenceRecord;
+import com.example.demo.service.EvidenceRecordService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/evidence")
-@Tag(name = "Evidence Record Controller", description = "Evidence APIs")
+@Tag(name = "Evidence Records")
 public class EvidenceRecordController {
 
     private final EvidenceRecordService service;

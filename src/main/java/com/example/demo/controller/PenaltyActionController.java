@@ -1,6 +1,20 @@
+package com.example.demo.controller;
+
+import com.example.demo.entity.PenaltyAction;
+import com.example.demo.service.PenaltyActionService;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
+
 @RestController
 @RequestMapping("/api/penalties")
-@Tag(name = "Penalty Action Controller", description = "Penalty APIs")
+@Tag(name = "Penalty Actions")
 public class PenaltyActionController {
 
     private final PenaltyActionService service;
