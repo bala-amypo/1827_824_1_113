@@ -5,13 +5,11 @@ import java.util.List;
 
 public interface StudentProfileService {
 
-    StudentProfile createStudent(StudentProfile student);
+    StudentProfile save(StudentProfile student);
 
-    StudentProfile getStudentById(Long id);
+    StudentProfile findById(Long id);
 
-    List<StudentProfile> getAllStudents();
+    List<StudentProfile> findAll();
 
-    void updateRepeatOffenderStatus(Long studentId);
-
-    StudentProfile getByStudentIdentifier(String studentId);
+    void updateRepeatStatus(Long id);
 }
