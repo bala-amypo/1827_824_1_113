@@ -1,11 +1,18 @@
 package com.example.demo.service;
-import com.example.demo.entity.StudentProfile;
-import jakarta.persistence.Service;
 
-@Service
-public interface StudentProfileservice{
-    public StudentProfile createStudent(StudentProfile dto)
-    public StudentProfile getStudentById(Long id)
-    public StudentProfile getAllStudents()
-    public StudentProfile updateRepeatOffenderStatus(Long studentId)
+import com.example.demo.entity.StudentProfile;
+
+import java.util.List;
+
+public interface StudentProfileService {
+
+    StudentProfile createStudent(StudentProfile student);
+
+    StudentProfile getStudentById(Long id);
+
+    List<StudentProfile> getAllStudents();
+
+    void updateRepeatOffenderStatus(Long studentId);
+
+    StudentProfile findByStudentIdentifier(String studentId);
 }
