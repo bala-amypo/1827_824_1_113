@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.ServiceImpl;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.RepeatOffenderRecord;
 import com.example.demo.repository.RepeatOffenderRecordRepository;
+import com.example.demo.service.RepeatOffenderRecordService;
 
 @Service
 public class RepeatOffenderRecordServiceImpl
