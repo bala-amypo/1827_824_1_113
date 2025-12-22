@@ -1,11 +1,11 @@
-// package com.example.demo.service;
+package com.example.demo.service;
 
-// import com.example.demo.entity.RepeatOffenderRecord;
-// import java.util.List;
+import com.example.demo.entity.RepeatOffenderRecord;
+import java.util.List;
 
-// public interface RepeatOffenderRecordService {
+public interface RepeatOffenderRecordService {
 
-//     RepeatOffenderRecord save(RepeatOffenderRecord record);
+    RepeatOffenderRecord save(RepeatOffenderRecord record);
 
-//     List<RepeatOffenderRecord> findAll();
-// }
+    List<RepeatOffenderRecord> findAll();
+}
