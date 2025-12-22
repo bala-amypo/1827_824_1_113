@@ -1,12 +1,9 @@
 package com.example.demo.entity;
 
-import java.time.LocalDate;
-
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Id;
 
 @Entity
 public class RepeatOffenderRecord {
@@ -15,28 +12,9 @@ public class RepeatOffenderRecord {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
-    private StudentProfile studentProfile;
+    private Long studentId;
 
-    private Integer totalCases;
-    private LocalDate lastIncidentDate;
-
-    private String flagSeverity;
-
-    public RepeatOffenderRecord() {
-    }
-
-    public RepeatOffenderRecord(Long id,
-                                StudentProfile studentProfile,
-                                Integer totalCases,
-                                LocalDate lastIncidentDate,
-                                String flagSeverity) {
-        this.id = id;
-        this.studentProfile = studentProfile;
-        this.totalCases = totalCases;
-        this.lastIncidentDate = lastIncidentDate;
-        this.flagSeverity = flagSeverity;
-    }
+    private Integer offenseCount;
 
     public Long getId() {
         return id;
@@ -46,35 +24,19 @@ public class RepeatOffenderRecord {
         this.id = id;
     }
 
-    public StudentProfile getStudentProfile() {
-        return studentProfile;
+    public Long getStudentId() {
+        return studentId;
     }
 
-    public void setStudentProfile(StudentProfile studentProfile) {
-        this.studentProfile = studentProfile;
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
     }
 
-    public Integer getTotalCases() {
-        return totalCases;
+    public Integer getOffenseCount() {
+        return offenseCount;
     }
 
-    public void setTotalCases(Integer totalCases) {
-        this.totalCases = totalCases;
-    }
-
-    public LocalDate getLastIncidentDate() {
-        return lastIncidentDate;
-    }
-
-    public void setLastIncidentDate(LocalDate lastIncidentDate) {
-        this.lastIncidentDate = lastIncidentDate;
-    }
-
-    public String getFlagSeverity() {
-        return flagSeverity;
-    }
-
-    public void setFlagSeverity(String flagSeverity) {
-        this.flagSeverity = flagSeverity;
+    public void setOffenseCount(Integer offenseCount) {
+        this.offenseCount = offenseCount;
     }
 }
