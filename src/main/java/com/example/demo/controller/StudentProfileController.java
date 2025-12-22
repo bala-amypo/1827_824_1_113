@@ -15,7 +15,7 @@ import com.example.demo.service.StudentProfileService;
 
 @RestController
 @RequestMapping("/api/students")
-@CrossOrigin(origins = "*")   // ⭐ THIS LINE FIXES SWAGGER
+@CrossOrigin(origins = "*")   
 public class StudentProfileController {
 
     private final StudentProfileService service;
