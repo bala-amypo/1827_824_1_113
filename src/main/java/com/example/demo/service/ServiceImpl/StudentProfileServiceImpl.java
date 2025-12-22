@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.dto.StudentProfile;
+import com.example.demo.entity.StudentProfile;
 import com.example.demo.repository.StudentProfileRepository;
 
 @Service

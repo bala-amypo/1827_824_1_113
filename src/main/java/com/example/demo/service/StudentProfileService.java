@@ -5,11 +5,11 @@ import com.example.demo.entity.StudentProfile;
 
 public interface StudentProfileService {
 
-    StudentProfile createStudent(StudentProfile studentProfile);
+    StudentProfile save(StudentProfile studentProfile);
 
-    StudentProfile getStudentById(Long id);
+    StudentProfile findById(Long id);
 
-    List<StudentProfile> getAllStudents();
+    List<StudentProfile> findAll();
 
-    void updateRepeatOffenderStatus(Long studentId);
+    void updateRepeatStatus(Long studentId);
 }
