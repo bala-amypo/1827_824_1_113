@@ -1,11 +1,13 @@
-package com.example.demo.service;
+package com.example.demo.service.ServiceImpl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.StudentProfile;
 import com.example.demo.repository.StudentProfileRepository;
+import com.example.demo.service.StudentProfileService;
 
 @Service
 public class StudentProfileServiceImpl implements StudentProfileService {
@@ -17,24 +19,26 @@ public class StudentProfileServiceImpl implements StudentProfileService {
     }
 
     @Override
-    public StudentProfile createStudent(StudentProfile dto) {
-        return repository.save(dto);
+    public StudentProfile save(StudentProfile studentProfile) {
+        return repository.save(studentProfile);
     }
 
     @Override
-    public StudentProfile getStudentById(Long id) {
-        return repository.findById(id).orElse(null);
+    public StudentProfile findById(Long id) {
+        Optional<StudentProfile> optionalStudent = repository.findById(id);
+        return optionalStudent.orElse(null);
     }
 
     @Override
-    public List<StudentProfile> getAllStudents() {
+    public List<StudentProfile> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public void updateRepeatOffenderStatus(Long studentId) {
-        StudentProfile student = repository.findById(studentId).orElse(null);
-        if (student != null) {
+    public void updateRepeatStatus(Long studentId) {
+        Optional<StudentProfile> optionalStudent = repository.findById(studentId);
+        if (optionalStudent.isPresent()) {
+            StudentProfile student = optionalStudent.get();
             student.setRepeatOffender(true);
             repository.save(student);
         }
