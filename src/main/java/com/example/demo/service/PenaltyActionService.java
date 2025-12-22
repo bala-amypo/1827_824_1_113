@@ -1,16 +1,16 @@
-package com.example.demo.service;
+// package com.example.demo.service;
 
-import com.example.demo.entity.PenaltyAction;
+// import com.example.demo.entity.PenaltyAction;
 
-import java.util.List;
+// import java.util.List;
 
-public interface PenaltyActionService {
+// public interface PenaltyActionService {
 
-    PenaltyAction addPenalty(PenaltyAction penalty);
+//     PenaltyAction addPenalty(PenaltyAction penalty);
 
-    List<PenaltyAction> getPenaltiesByCase(Long caseId);
+//     List<PenaltyAction> getPenaltiesByCase(Long caseId);
 
-    PenaltyAction getPenaltyById(Long id);
+//     PenaltyAction getPenaltyById(Long id);
 
-    List<PenaltyAction> getAllPenalties();
-}
+//     List<PenaltyAction> getAllPenalties();
+// }
