@@ -1,15 +1,15 @@
 package com.example.demo.service;
 
 import java.util.List;
-import com.example.demo.entity.StudentProfile;
+import com.example.demo.entity.RepeatOffenderRecord;
 
-public interface StudentProfileService {
+public interface RepeatOffenderRecordService {
 
-    StudentProfile save(StudentProfile studentProfile);
+    RepeatOffenderRecord save(RepeatOffenderRecord record);
 
-    StudentProfile findById(Long id);
+    RepeatOffenderRecord findById(Long id);
 
-    List<StudentProfile> findAll();
+    List<RepeatOffenderRecord> findAll();
 
-    void updateRepeatStatus(Long studentId);
+    List<RepeatOffenderRecord> findByStudentId(Long studentId);
 }

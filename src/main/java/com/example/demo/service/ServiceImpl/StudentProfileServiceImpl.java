@@ -1,46 +1,40 @@
-package com.example.demo.service.ServiceImpl;
+package com.example.demo.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.example.demo.entity.StudentProfile;
-import com.example.demo.repository.StudentProfileRepository;
-import com.example.demo.service.StudentProfileService;
+import com.example.demo.entity.RepeatOffenderRecord;
+import com.example.demo.repository.RepeatOffenderRecordRepository;
 
 @Service
-public class StudentProfileServiceImpl implements StudentProfileService {
+public class RepeatOffenderRecordServiceImpl
+        implements RepeatOffenderRecordService {
 
-    private final StudentProfileRepository repository;
+    private final RepeatOffenderRecordRepository repository;
 
-    public StudentProfileServiceImpl(StudentProfileRepository repository) {
+    public RepeatOffenderRecordServiceImpl(
+            RepeatOffenderRecordRepository repository) {
         this.repository = repository;
     }
 
     @Override
-    public StudentProfile save(StudentProfile studentProfile) {
-        return repository.save(studentProfile);
+    public RepeatOffenderRecord save(RepeatOffenderRecord record) {
+        return repository.save(record);
     }
 
     @Override
-    public StudentProfile findById(Long id) {
-        Optional<StudentProfile> optionalStudent = repository.findById(id);
-        return optionalStudent.orElse(null);
+    public RepeatOffenderRecord findById(Long id) {
+        return repository.findById(id).orElse(null);
     }
 
     @Override
-    public List<StudentProfile> findAll() {
+    public List<RepeatOffenderRecord> findAll() {
         return repository.findAll();
     }
 
     @Override
-    public void updateRepeatStatus(Long studentId) {
-        Optional<StudentProfile> optionalStudent = repository.findById(studentId);
-        if (optionalStudent.isPresent()) {
-            StudentProfile student = optionalStudent.get();
-            student.setRepeatOffender(true);
-            repository.save(student);
-        }
+    public List<RepeatOffenderRecord> findByStudentId(Long studentId) {
+        return repository.findByStudentId(studentId);
     }
 }
