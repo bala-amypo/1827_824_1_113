@@ -8,7 +8,8 @@ import com.example.demo.entity.IntegrityCase;
 import com.example.demo.repository.IntegrityCaseRepository;
 
 @Service
-public class IntegrityCaseServiceImpl implements IntegrityCaseService {
+public class IntegrityCaseServiceImpl implements IntegrityCaseService 
+{
 
     private final IntegrityCaseRepository repository;
 
