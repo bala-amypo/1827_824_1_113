@@ -33,9 +33,11 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService
     }
 
     @Override
-    public List<IntegrityCase> getCasesByStudent(Long studentId) {
-        return repository.findByStudentId(studentId);
-    }
+   @Override
+public List<IntegrityCase> getCasesByStudent(Long studentId) {
+    return repository.findByStudentProfile_Id(studentId);
+}
+
 
     @Override
     public List<IntegrityCase> getAllCases() {
