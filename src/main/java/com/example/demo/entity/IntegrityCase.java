@@ -1,114 +1,60 @@
-// package com.example.demo.entity;
+package com.example.demo.entity;
 
-// import jakarta.persistence.Entity;
-// import jakarta.persistence.Id;
-// import jakarta.persistence.GeneratedValue;
-// import jakarta.persistence.GenerationType;
-// import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 
-// import java.time.LocalDate;
-// import java.time.LocalDateTime;
+@Entity
+public class IntegrityCase {
 
-// @Entity
-// public class IntegrityCase {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-//     @Id
-//     @GeneratedValue(strategy = GenerationType.IDENTITY)
-//     private Long id;
+    private Long studentId;
 
-//     private String courseCode;
+    private String caseType;
+    private String description;
+    private String status;
 
-//     @ManyToOne
-//     private StudentProfile studentProfile;
+    public Long getId() {
+        return id;
+    }
 
-//     private String instructorName;
-//     private String description;
-//     private String status;
-//     private LocalDate incidentDate;
-//     private LocalDateTime createdAt;
+    public void setId(Long id) {
+        this.id = id;
+    }
 
-//     public IntegrityCase() {
-//     }
+    public Long getStudentId() {
+        return studentId;
+    }
 
-//     public IntegrityCase(Long id,
-//                          StudentProfile studentProfile,
-//                          String courseCode,
-//                          String instructorName,
-//                          String description,
-//                          String status,
-//                          LocalDate incidentDate,
-//                          LocalDateTime createdAt) {
-//         this.id = id;
-//         this.studentProfile = studentProfile;
-//         this.courseCode = courseCode;
-//         this.instructorName = instructorName;
-//         this.description = description;
-//         this.status = status;
-//         this.incidentDate = incidentDate;
-//         this.createdAt = createdAt;
-//     }
+    public void setStudentId(Long studentId) {
+        this.studentId = studentId;
+    }
 
-//     public Long getId() {
-//         return id;
-//     }
+    public String getCaseType() {
+        return caseType;
+    }
 
-//     public void setId(Long id) {
-//         this.id = id;
-//     }
+    public void setCaseType(String caseType) {
+        this.caseType = caseType;
+    }
 
-//     public String getCourseCode() {
-//         return courseCode;
-//     }
+    public String getDescription() {
+        return description;
+    }
 
-//     public void setCourseCode(String courseCode) {
-//         this.courseCode = courseCode;
-//     }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-//     public StudentProfile getStudentProfile() {
-//         return studentProfile;
-//     }
+    public String getStatus() {
+        return status;
+    }
 
-//     public void setStudentProfile(StudentProfile studentProfile) {
-//         this.studentProfile = studentProfile;
-//     }
-
-//     public String getInstructorName() {
-//         return instructorName;
-//     }
-
-//     public void setInstructorName(String instructorName) {
-//         this.instructorName = instructorName;
-//     }
-
-//     public String getDescription() {
-//         return description;
-//     }
-
-//     public void setDescription(String description) {
-//         this.description = description;
-//     }
-
-//     public String getStatus() {
-//         return status;
-//     }
-
-//     public void setStatus(String status) {
-//         this.status = status;
-//     }
-
-//     public LocalDate getIncidentDate() {
-//         return incidentDate;
-//     }
-
-//     public void setIncidentDate(LocalDate incidentDate) {
-//         this.incidentDate = incidentDate;
-//     }
-
-//     public LocalDateTime getCreatedAt() {
-//         return createdAt;
-//     }
-
-//     public void setCreatedAt(LocalDateTime createdAt) {
-//         this.createdAt = createdAt;
-//     }
-// }
+    public void setStatus(String status) {
+        this.status = status;
+    }
+}
