@@ -1,21 +1,21 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.StudentProfile;
-import com.example.demo.service.StudentProfileService;
-import io.swagger.v3.oas.annotations.tags.Tag;
+import java.util.List;
+
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
+import com.example.demo.entity.StudentProfile;
+import com.example.demo.service.StudentProfileService;
 
 @RestController
 @RequestMapping("/api/students")
-@Tag(name = "Student Profiles")
+@CrossOrigin(origins = "*")   
 public class StudentProfileController {
 
     private final StudentProfileService service;
@@ -25,8 +25,8 @@ public class StudentProfileController {
     }
 
     @PostMapping
-    public StudentProfile create(@RequestBody StudentProfile student) {
-        return service.save(student);
+    public StudentProfile save(@RequestBody StudentProfile studentProfile) {
+        return service.save(studentProfile);
     }
 
     @GetMapping("/{id}")
@@ -37,10 +37,5 @@ public class StudentProfileController {
     @GetMapping
     public List<StudentProfile> getAll() {
         return service.findAll();
-    }
-
-    @PutMapping("/{id}/repeat")
-    public void updateRepeatStatus(@PathVariable Long id) {
-        service.updateRepeatStatus(id);
     }
 }
