@@ -14,4 +14,3 @@ public interface RepeatOffenderRecordService {
 
     List<RepeatOffenderRecord> findByStudentId(Long studentId);
 }
-`
