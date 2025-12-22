@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.ServiceImpl;
 
 import java.util.List;
 
@@ -6,10 +6,10 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.IntegrityCase;
 import com.example.demo.repository.IntegrityCaseRepository;
+import com.example.demo.service.IntegrityCaseService;
 
 @Service
-public class IntegrityCaseServiceImpl implements IntegrityCaseService 
-{
+public class IntegrityCaseServiceImpl implements IntegrityCaseService {
 
     private final IntegrityCaseRepository repository;
 
@@ -32,12 +32,10 @@ public class IntegrityCaseServiceImpl implements IntegrityCaseService
         return null;
     }
 
-    
-   @Override
-public List<IntegrityCase> getCasesByStudent(Long studentId) {
-    return repository.findByStudentProfile_Id(studentId);
-}
-
+    @Override
+    public List<IntegrityCase> getCasesByStudent(Long studentId) {
+        return repository.findByStudentProfile_Id(studentId);
+    }
 
     @Override
     public List<IntegrityCase> getAllCases() {

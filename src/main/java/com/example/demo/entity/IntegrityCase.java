@@ -1,9 +1,14 @@
 package com.example.demo.entity;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 
 @Entity
 public class IntegrityCase {
@@ -12,11 +17,24 @@ public class IntegrityCase {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long studentId;
+    @ManyToOne
+    private StudentProfile studentProfile;
 
-    private String caseType;
     private String description;
+
     private String status;
+
+    private LocalDate incidentDate;
+
+    private LocalDateTime createdAt;
+
+    @PrePersist
+    public void onCreate() {
+        this.createdAt = LocalDateTime.now();
+        if (this.status == null) {
+            this.status = "OPEN";
+        }
+    }
 
     public Long getId() {
         return id;
@@ -26,20 +44,12 @@ public class IntegrityCase {
         this.id = id;
     }
 
-    public Long getStudentId() {
-        return studentId;
+    public StudentProfile getStudentProfile() {
+        return studentProfile;
     }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
-    }
-
-    public String getCaseType() {
-        return caseType;
-    }
-
-    public void setCaseType(String caseType) {
-        this.caseType = caseType;
+    public void setStudentProfile(StudentProfile studentProfile) {
+        this.studentProfile = studentProfile;
     }
 
     public String getDescription() {
@@ -56,5 +66,17 @@ public class IntegrityCase {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public LocalDate getIncidentDate() {
+        return incidentDate;
+    }
+
+    public void setIncidentDate(LocalDate incidentDate) {
+        this.incidentDate = incidentDate;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
     }
 }
