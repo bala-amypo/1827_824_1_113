@@ -1,45 +1,44 @@
-// package com.example.demo.controller;
+package com.example.demo.controller;
 
-// import com.example.demo.entity.EvidenceRecord;
-// import com.example.demo.service.EvidenceRecordService;
-// import io.swagger.v3.oas.annotations.tags.Tag;
-// import org.springframework.web.bind.annotation.GetMapping;
-// import org.springframework.web.bind.annotation.PathVariable;
-// import org.springframework.web.bind.annotation.PostMapping;
-// import org.springframework.web.bind.annotation.RequestBody;
-// import org.springframework.web.bind.annotation.RequestMapping;
-// import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
-// import java.util.List;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
-// @RestController
-// @RequestMapping("/api/evidence")
-// @Tag(name = "Evidence Records")
-// public class EvidenceRecordController {
+import com.example.demo.entity.EvidenceRecord;
+import com.example.demo.service.EvidenceRecordService;
 
-//     private final EvidenceRecordService service;
+@RestController
+@RequestMapping("/api/evidence")
+public class EvidenceRecordController {
 
-//     public EvidenceRecordController(EvidenceRecordService service) {
-//         this.service = service;
-//     }
+    private final EvidenceRecordService service;
 
-//     @PostMapping
-//     public EvidenceRecord submitEvidence(@RequestBody EvidenceRecord evidence) {
-//         return service.submitEvidence(evidence);
-//     }
+    public EvidenceRecordController(EvidenceRecordService service) {
+        this.service = service;
+    }
 
-//     @GetMapping("/case/{caseId}")
-//     public List<EvidenceRecord> getEvidenceByCase(@PathVariable Long caseId) {
-//         return service.getEvidenceByCase(caseId);
-//     }
+    @PostMapping
+    public EvidenceRecord submitEvidence(@RequestBody EvidenceRecord evidence) {
+        return service.submitEvidence(evidence);
+    }
 
-//     @GetMapping("/{id}")
-//     public EvidenceRecord getEvidenceById(@PathVariable Long id) {
-//         return service.getEvidenceById(id);
-//     }
+    @GetMapping
+    public List<EvidenceRecord> getAllEvidence() {
+        return service.getAllEvidence();
+    }
 
-//     @GetMapping
-//     public List<EvidenceRecord> getAllEvidence() {
-//         return service.getAllEvidence();
-//     }
-// }
+    @GetMapping("/{id}")
+    public EvidenceRecord getEvidenceById(@PathVariable Long id) {
+        return service.getEvidenceById(id);
+    }
+
+    @GetMapping("/case/{caseId}")
+    public List<EvidenceRecord> getEvidenceByCase(@PathVariable Long caseId) {
+        return service.getEvidenceByCase(caseId);
+    }
+}
