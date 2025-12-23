@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.demo.service.ServiceImpl;
 
 import java.util.List;
 
@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.demo.entity.EvidenceRecord;
 import com.example.demo.repository.EvidenceRecordRepository;
+import com.example.demo.service.EvidenceRecordService;
 
 @Service
 public class EvidenceRecordServiceImpl implements EvidenceRecordService {
@@ -23,7 +24,7 @@ public class EvidenceRecordServiceImpl implements EvidenceRecordService {
 
     @Override
     public List<EvidenceRecord> getEvidenceByCase(Long caseId) {
-        return repository.findByIntegrityCaseId(caseId);
+        return repository.findByIntegrityCase_Id(caseId);
     }
 
     @Override

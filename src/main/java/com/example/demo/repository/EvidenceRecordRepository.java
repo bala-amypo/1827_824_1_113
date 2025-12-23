@@ -1,12 +1,13 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.EvidenceRecord;
-import com.example.demo.entity.IntegrityCase;
-import org.springframework.data.jpa.repository.JpaRepository;
-
 import java.util.List;
 
-public interface EvidenceRecordRepository extends JpaRepository<EvidenceRecord, Long> {
+import org.springframework.data.jpa.repository.JpaRepository;
 
-    List<EvidenceRecord> findByIntegrityCase(IntegrityCase integrityCase);
+import com.example.demo.entity.EvidenceRecord;
+
+public interface EvidenceRecordRepository
+        extends JpaRepository<EvidenceRecord, Long> {
+
+    List<EvidenceRecord> findByIntegrityCase_Id(Long caseId);
 }

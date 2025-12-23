@@ -3,10 +3,11 @@ package com.example.demo.entity;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.PrePersist;
 
 @Entity
 public class EvidenceRecord {
@@ -23,32 +24,13 @@ public class EvidenceRecord {
     private String submittedBy;
     private LocalDateTime submittedAt;
 
-    // ✅ No-arg constructor (required by JPA)
-    public EvidenceRecord() {
+    @PrePersist
+    public void onCreate() {
+        this.submittedAt = LocalDateTime.now();
     }
 
-    // ✅ Parameterized constructor
-    public EvidenceRecord(Long id,
-                          IntegrityCase integrityCase,
-                          String evidenceType,
-                          String content,
-                          String submittedBy,
-                          LocalDateTime submittedAt) {
-        this.id = id;
-        this.integrityCase = integrityCase;
-        this.evidenceType = evidenceType;
-        this.content = content;
-        this.submittedBy = submittedBy;
-        this.submittedAt = submittedAt;
-    }
-
-    // ✅ Getters and Setters
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public IntegrityCase getIntegrityCase() {
@@ -85,9 +67,5 @@ public class EvidenceRecord {
 
     public LocalDateTime getSubmittedAt() {
         return submittedAt;
-    }
-
-    public void setSubmittedAt(LocalDateTime submittedAt) {
-        this.submittedAt = submittedAt;
     }
 }
