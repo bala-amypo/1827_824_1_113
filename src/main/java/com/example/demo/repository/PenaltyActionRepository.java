@@ -1,12 +1,12 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.PenaltyAction;
-import com.example.demo.entity.IntegrityCase;
+import java.util.List;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.List;
+import com.example.demo.entity.PenaltyAction;
 
 public interface PenaltyActionRepository extends JpaRepository<PenaltyAction, Long> {
 
-    List<PenaltyAction> findByIntegrityCase(IntegrityCase integrityCase);
+    List<PenaltyAction> findByIntegrityCase_Id(Long caseId);
 }
