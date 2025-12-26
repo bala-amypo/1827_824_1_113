@@ -5,7 +5,9 @@ import com.example.demo.entity.RepeatOffenderRecord;
 import com.example.demo.entity.StudentProfile;
 import java.time.LocalDate;
 import java.util.List;
+import org.springframework.stereotype.Component;
 
+@Component
 public class RepeatOffenderCalculator {
 
     public RepeatOffenderRecord computeRepeatOffenderRecord(
