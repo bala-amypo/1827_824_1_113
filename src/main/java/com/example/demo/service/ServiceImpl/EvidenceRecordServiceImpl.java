@@ -1,39 +1,32 @@
-package com.example.demo.service.ServiceImpl;
-
-import java.util.List;
-
-import org.springframework.stereotype.Service;
+package com.example.demo.service.impl;
 
 import com.example.demo.entity.EvidenceRecord;
+import com.example.demo.entity.IntegrityCase;
 import com.example.demo.repository.EvidenceRecordRepository;
+import com.example.demo.repository.IntegrityCaseRepository;
 import com.example.demo.service.EvidenceRecordService;
 
-@Service
 public class EvidenceRecordServiceImpl implements EvidenceRecordService {
 
-    private final EvidenceRecordRepository repository;
+    private final EvidenceRecordRepository evidenceRecordRepository;
+    private final IntegrityCaseRepository integrityCaseRepository;
 
-    public EvidenceRecordServiceImpl(EvidenceRecordRepository repository) {
-        this.repository = repository;
+    public EvidenceRecordServiceImpl(
+            EvidenceRecordRepository evidenceRecordRepository,
+            IntegrityCaseRepository integrityCaseRepository) {
+
+        this.evidenceRecordRepository = evidenceRecordRepository;
+        this.integrityCaseRepository = integrityCaseRepository;
     }
 
     @Override
-    public EvidenceRecord submitEvidence(EvidenceRecord evidence) {
-        return repository.save(evidence);
-    }
+    public EvidenceRecord submitEvidence(EvidenceRecord evidenceRecord) {
 
-    @Override
-    public List<EvidenceRecord> getEvidenceByCase(Long caseId) {
-        return repository.findByIntegrityCase_Id(caseId);
-    }
+        IntegrityCase integrityCase = integrityCaseRepository
+                .findById(evidenceRecord.getIntegrityCase().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Case not found"));
 
-    @Override
-    public EvidenceRecord getEvidenceById(Long id) {
-        return repository.findById(id).orElse(null);
-    }
-
-    @Override
-    public List<EvidenceRecord> getAllEvidence() {
-        return repository.findAll();
+        evidenceRecord.setIntegrityCase(integrityCase);
+        return evidenceRecordRepository.save(evidenceRecord);
     }
 }

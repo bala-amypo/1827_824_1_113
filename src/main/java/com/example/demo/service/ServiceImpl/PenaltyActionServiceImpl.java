@@ -1,39 +1,35 @@
-package com.example.demo.service.ServiceImpl;
+package com.example.demo.service.impl;
 
-import java.util.List;
-
-import org.springframework.stereotype.Service;
-
+import com.example.demo.entity.IntegrityCase;
 import com.example.demo.entity.PenaltyAction;
+import com.example.demo.repository.IntegrityCaseRepository;
 import com.example.demo.repository.PenaltyActionRepository;
 import com.example.demo.service.PenaltyActionService;
 
-@Service
 public class PenaltyActionServiceImpl implements PenaltyActionService {
 
-    private final PenaltyActionRepository repository;
+    private final PenaltyActionRepository penaltyActionRepository;
+    private final IntegrityCaseRepository integrityCaseRepository;
 
-    public PenaltyActionServiceImpl(PenaltyActionRepository repository) {
-        this.repository = repository;
+    public PenaltyActionServiceImpl(
+            PenaltyActionRepository penaltyActionRepository,
+            IntegrityCaseRepository integrityCaseRepository) {
+
+        this.penaltyActionRepository = penaltyActionRepository;
+        this.integrityCaseRepository = integrityCaseRepository;
     }
 
     @Override
-    public PenaltyAction addPenalty(PenaltyAction penalty) {
-        return repository.save(penalty);
-    }
+    public PenaltyAction addPenalty(PenaltyAction penaltyAction) {
 
-    @Override
-    public List<PenaltyAction> getPenaltiesByCase(Long caseId) {
-        return repository.findByIntegrityCase_Id(caseId);
-    }
+        IntegrityCase integrityCase = integrityCaseRepository
+                .findById(penaltyAction.getIntegrityCase().getId())
+                .orElseThrow(() -> new IllegalArgumentException("Case not found"));
 
-    @Override
-    public PenaltyAction getPenaltyById(Long id) {
-        return repository.findById(id).orElse(null);
-    }
+        integrityCase.setStatus("UNDER_REVIEW");
+        integrityCaseRepository.save(integrityCase);
 
-    @Override
-    public List<PenaltyAction> getAllPenalties() {
-        return repository.findAll();
+        penaltyAction.setIntegrityCase(integrityCase);
+        return penaltyActionRepository.save(penaltyAction);
     }
 }

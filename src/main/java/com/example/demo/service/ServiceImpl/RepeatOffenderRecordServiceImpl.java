@@ -1,41 +1,46 @@
-package com.example.demo.service.ServiceImpl;
+package com.example.demo.service.impl;
 
+import com.example.demo.entity.IntegrityCase;
+import com.example.demo.entity.RepeatOffenderRecord;
+import com.example.demo.entity.StudentProfile;
+import com.example.demo.repository.IntegrityCaseRepository;
+import com.example.demo.repository.RepeatOffenderRecordRepository;
+import com.example.demo.repository.StudentProfileRepository;
+import com.example.demo.service.RepeatOffenderRecordService;
+import com.example.demo.util.RepeatOffenderCalculator;
 import java.util.List;
 
-import org.springframework.stereotype.Service;
+public class RepeatOffenderRecordServiceImpl implements RepeatOffenderRecordService {
 
-import com.example.demo.entity.RepeatOffenderRecord;
-import com.example.demo.repository.RepeatOffenderRecordRepository;
-import com.example.demo.service.RepeatOffenderRecordService;
-
-@Service
-public class RepeatOffenderRecordServiceImpl
-        implements RepeatOffenderRecordService {
-
-    private final RepeatOffenderRecordRepository repository;
+    private final StudentProfileRepository studentProfileRepository;
+    private final IntegrityCaseRepository integrityCaseRepository;
+    private final RepeatOffenderRecordRepository repeatOffenderRecordRepository;
+    private final RepeatOffenderCalculator calculator;
 
     public RepeatOffenderRecordServiceImpl(
-            RepeatOffenderRecordRepository repository) {
-        this.repository = repository;
+            StudentProfileRepository studentProfileRepository,
+            IntegrityCaseRepository integrityCaseRepository,
+            RepeatOffenderRecordRepository repeatOffenderRecordRepository,
+            RepeatOffenderCalculator calculator) {
+
+        this.studentProfileRepository = studentProfileRepository;
+        this.integrityCaseRepository = integrityCaseRepository;
+        this.repeatOffenderRecordRepository = repeatOffenderRecordRepository;
+        this.calculator = calculator;
     }
 
     @Override
-    public RepeatOffenderRecord save(RepeatOffenderRecord record) {
-        return repository.save(record);
-    }
+    public RepeatOffenderRecord recalculate(StudentProfile studentProfile) {
 
-    @Override
-    public RepeatOffenderRecord findById(Long id) {
-        return repository.findById(id).orElse(null);
-    }
+        List<IntegrityCase> cases = integrityCaseRepository.findByStudentProfile(studentProfile);
 
-    @Override
-    public List<RepeatOffenderRecord> findAll() {
-        return repository.findAll();
-    }
+        RepeatOffenderRecord record = calculator.computeRepeatOffenderRecord(studentProfile, cases);
 
-    @Override
-    public List<RepeatOffenderRecord> findByStudentId(Long studentId) {
-        return repository.findByStudentId(studentId);
+        repeatOffenderRecordRepository.save(record);
+
+        studentProfile.setRepeatOffender(record.getTotalCases() >= 2);
+        studentProfileRepository.save(studentProfile);
+
+        return record;
     }
 }
