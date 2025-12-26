@@ -10,7 +10,9 @@ import com.example.demo.repository.StudentProfileRepository;
 import com.example.demo.service.StudentProfileService;
 import com.example.demo.util.RepeatOffenderCalculator;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class StudentProfileServiceImpl implements StudentProfileService {
 
     private final StudentProfileRepository studentProfileRepository;
@@ -52,9 +54,11 @@ public class StudentProfileServiceImpl implements StudentProfileService {
 
         StudentProfile student = getStudentById(studentId);
 
-        List<IntegrityCase> cases = integrityCaseRepository.findByStudentProfile(student);
+        List<IntegrityCase> cases =
+                integrityCaseRepository.findByStudentProfile(student);
 
-        RepeatOffenderRecord record = calculator.computeRepeatOffenderRecord(student, cases);
+        RepeatOffenderRecord record =
+                calculator.computeRepeatOffenderRecord(student, cases);
 
         repeatOffenderRecordRepository.findByStudentProfile(student)
                 .ifPresentOrElse(existing -> {

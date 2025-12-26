@@ -14,7 +14,9 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AuthServiceImpl implements AuthService {
 
     private final AppUserRepository appUserRepository;
@@ -39,14 +41,13 @@ public class AuthServiceImpl implements AuthService {
 
     @Override
     public void register(RegisterRequest registerRequest) {
+
         if (appUserRepository.existsByEmail(registerRequest.getEmail())) {
             throw new IllegalArgumentException("Email already exists");
         }
 
-        Optional<Role> roleOpt = roleRepository.findByName(registerRequest.getRole());
-        if (roleOpt.isEmpty()) {
-            throw new IllegalArgumentException("Role not found");
-        }
+        Role role = roleRepository.findByName(registerRequest.getRole())
+                .orElseThrow(() -> new IllegalArgumentException("Role not found"));
 
         AppUser user = new AppUser(
                 registerRequest.getFullName(),
@@ -54,19 +55,20 @@ public class AuthServiceImpl implements AuthService {
                 passwordEncoder.encode(registerRequest.getPassword())
         );
 
-        user.getRoles().add(roleOpt.get());
+        user.getRoles().add(role);
         appUserRepository.save(user);
     }
 
     @Override
     public JwtResponse login(LoginRequest loginRequest) {
 
-        Authentication authentication = authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
-                        loginRequest.getEmail(),
-                        loginRequest.getPassword()
-                )
-        );
+        Authentication authentication =
+                authenticationManager.authenticate(
+                        new UsernamePasswordAuthenticationToken(
+                                loginRequest.getEmail(),
+                                loginRequest.getPassword()
+                        )
+                );
 
         AppUser user = appUserRepository.findByEmail(loginRequest.getEmail())
                 .orElseThrow(() -> new IllegalArgumentException("User not found"));
