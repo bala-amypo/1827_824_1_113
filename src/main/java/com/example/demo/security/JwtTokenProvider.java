@@ -4,6 +4,7 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 import org.springframework.security.core.Authentication;
@@ -12,10 +13,25 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtTokenProvider {
 
-    private static final Key SIGNING_KEY =
-            Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private Key signingKey;
+    private long expirationMs;
 
-    private static final long EXPIRATION_MS = 60000;
+    /**
+     * Default constructor for Spring Boot
+     */
+    public JwtTokenProvider() {
+        this.signingKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+        this.expirationMs = 60000;
+    }
+
+    /**
+     * Constructor REQUIRED by TestNG tests
+     */
+    public JwtTokenProvider(String secret, long expirationMs) {
+        this.signingKey = Keys.hmacShaKeyFor(
+                secret.getBytes(StandardCharsets.UTF_8));
+        this.expirationMs = expirationMs;
+    }
 
     public String generateToken(
             Authentication authentication,
@@ -24,7 +40,7 @@ public class JwtTokenProvider {
             String role) {
 
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + EXPIRATION_MS);
+        Date expiryDate = new Date(now.getTime() + expirationMs);
 
         return Jwts.builder()
                 .setSubject(email)
@@ -32,14 +48,14 @@ public class JwtTokenProvider {
                 .claim("role", role)
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(SIGNING_KEY, SignatureAlgorithm.HS256)
+                .signWith(signingKey, SignatureAlgorithm.HS256)
                 .compact();
     }
 
     public String getUsernameFromToken(String token) {
 
         Claims claims = Jwts.parserBuilder()
-                .setSigningKey(SIGNING_KEY)
+                .setSigningKey(signingKey)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
@@ -50,9 +66,9 @@ public class JwtTokenProvider {
     public boolean validateToken(String token) {
         try {
             Jwts.parserBuilder()
-                .setSigningKey(SIGNING_KEY)
-                .build()
-                .parseClaimsJws(token);
+                    .setSigningKey(signingKey)
+                    .build()
+                    .parseClaimsJws(token);
             return true;
         } catch (Exception ex) {
             return false;
