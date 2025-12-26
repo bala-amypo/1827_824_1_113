@@ -12,9 +12,6 @@ import org.springframework.stereotype.Component;
 @Component
 public class JwtTokenProvider {
 
-    /**
-     * RFC 7518 compliant key (256-bit for HS256)
-     */
     private static final Key SIGNING_KEY =
             Keys.secretKeyFor(SignatureAlgorithm.HS256);
 
@@ -30,32 +27,32 @@ public class JwtTokenProvider {
         Date expiryDate = new Date(now.getTime() + EXPIRATION_MS);
 
         return Jwts.builder()
-                .subject(email)
+                .setSubject(email)
                 .claim("userId", userId)
                 .claim("role", role)
-                .issuedAt(now)
-                .expiration(expiryDate)
-                .signWith(SIGNING_KEY)
+                .setIssuedAt(now)
+                .setExpiration(expiryDate)
+                .signWith(SIGNING_KEY, SignatureAlgorithm.HS256)
                 .compact();
     }
 
     public String getUsernameFromToken(String token) {
 
-        Claims claims = Jwts.parser()
-                .verifyWith(SIGNING_KEY)
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(SIGNING_KEY)
                 .build()
-                .parseSignedClaims(token)
-                .getPayload();
+                .parseClaimsJws(token)
+                .getBody();
 
         return claims.getSubject();
     }
 
     public boolean validateToken(String token) {
         try {
-            Jwts.parser()
-                    .verifyWith(SIGNING_KEY)
-                    .build()
-                    .parseSignedClaims(token);
+            Jwts.parserBuilder()
+                .setSigningKey(SIGNING_KEY)
+                .build()
+                .parseClaimsJws(token);
             return true;
         } catch (Exception ex) {
             return false;
