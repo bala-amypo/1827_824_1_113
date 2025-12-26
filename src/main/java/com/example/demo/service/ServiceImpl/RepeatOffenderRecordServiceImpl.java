@@ -9,7 +9,9 @@ import com.example.demo.repository.StudentProfileRepository;
 import com.example.demo.service.RepeatOffenderRecordService;
 import com.example.demo.util.RepeatOffenderCalculator;
 import java.util.List;
+import org.springframework.stereotype.Service;
 
+@Service
 public class RepeatOffenderRecordServiceImpl implements RepeatOffenderRecordService {
 
     private final StudentProfileRepository studentProfileRepository;
@@ -32,9 +34,11 @@ public class RepeatOffenderRecordServiceImpl implements RepeatOffenderRecordServ
     @Override
     public RepeatOffenderRecord recalculate(StudentProfile studentProfile) {
 
-        List<IntegrityCase> cases = integrityCaseRepository.findByStudentProfile(studentProfile);
+        List<IntegrityCase> cases =
+                integrityCaseRepository.findByStudentProfile(studentProfile);
 
-        RepeatOffenderRecord record = calculator.computeRepeatOffenderRecord(studentProfile, cases);
+        RepeatOffenderRecord record =
+                calculator.computeRepeatOffenderRecord(studentProfile, cases);
 
         repeatOffenderRecordRepository.save(record);
 

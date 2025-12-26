@@ -5,7 +5,9 @@ import com.example.demo.entity.PenaltyAction;
 import com.example.demo.repository.IntegrityCaseRepository;
 import com.example.demo.repository.PenaltyActionRepository;
 import com.example.demo.service.PenaltyActionService;
+import org.springframework.stereotype.Service;
 
+@Service
 public class PenaltyActionServiceImpl implements PenaltyActionService {
 
     private final PenaltyActionRepository penaltyActionRepository;
