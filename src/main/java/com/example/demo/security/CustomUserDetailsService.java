@@ -1,47 +1,33 @@
+
+
 package com.example.demo.security;
 
 import com.example.demo.entity.AppUser;
 import com.example.demo.repository.AppUserRepository;
-import java.util.List;
-import java.util.stream.Collectors;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.Service;
+import java.util.stream.Collectors;
 
 @Service
 public class CustomUserDetailsService implements UserDetailsService {
+    private final AppUserRepository repo;
 
-    private final AppUserRepository appUserRepository;
-
-    public CustomUserDetailsService(AppUserRepository appUserRepository) {
-        this.appUserRepository = appUserRepository;
+    public CustomUserDetailsService(AppUserRepository repo) {
+        this.repo = repo;
     }
 
     @Override
-    public UserDetails loadUserByUsername(String email)
-            throws UsernameNotFoundException {
-
-        AppUser user = appUserRepository.findByEmail(email)
-                .orElseThrow(() ->
-                        new UsernameNotFoundException(
-                                "User not found with email: " + email));
-
-        List<GrantedAuthority> authorities =
-                user.getRoles()
-                        .stream()
-                        .map(role ->
-                                new SimpleGrantedAuthority(role.getName()))
-                        .collect(Collectors.toList());
-
-        return new User(
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        AppUser user = repo.findByEmail(email)
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+        
+        return new org.springframework.security.core.userdetails.User(
                 user.getEmail(),
                 user.getPassword(),
-                authorities
+                user.getRoles().stream()
+                    .map(role -> new SimpleGrantedAuthority(role.getName()))
+                    .collect(Collectors.toList())
         );
     }
 }
-
