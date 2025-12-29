@@ -2,63 +2,45 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.IntegrityCase;
 import com.example.demo.service.IntegrityCaseService;
-import java.util.List;
-import java.util.Optional;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
-@RequestMapping("/cases")
+@RequestMapping("/api/cases")
+@Tag(name = "Integrity Cases")
 public class IntegrityCaseController {
+    private final IntegrityCaseService service;
 
-    private final IntegrityCaseService integrityCaseService;
-
-    public IntegrityCaseController(IntegrityCaseService integrityCaseService) {
-        this.integrityCaseService = integrityCaseService;
+    public IntegrityCaseController(IntegrityCaseService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<IntegrityCase> create(
-            @RequestBody IntegrityCase integrityCase) {
-
-        return ResponseEntity.ok(
-                integrityCaseService.createCase(integrityCase)
-        );
+    @Operation(summary = "Create integrity case")
+    public ResponseEntity<IntegrityCase> createCase(@RequestBody IntegrityCase c) {
+        return ResponseEntity.ok(service.createCase(c));
     }
 
-    @PutMapping("/{id}/status/{status}")
-    public ResponseEntity<IntegrityCase> updateStatus(
-            @PathVariable Long id,
-            @PathVariable String status) {
-
-        return ResponseEntity.ok(
-                integrityCaseService.updateCaseStatus(id, status)
-        );
+    @PutMapping("/{id}/status")
+    @Operation(summary = "Update case status")
+    public ResponseEntity<IntegrityCase> updateCaseStatus(@PathVariable Long id, @RequestParam String status) {
+        return ResponseEntity.ok(service.updateCaseStatus(id, status));
     }
 
     @GetMapping("/student/{studentId}")
-    public ResponseEntity<List<IntegrityCase>> getByStudent(
-            @PathVariable Long studentId) {
-
-        return ResponseEntity.ok(
-                integrityCaseService.getCasesByStudent(studentId)
-        );
+    @Operation(summary = "Get cases by student")
+    public ResponseEntity<List<IntegrityCase>> getCasesByStudent(@PathVariable Long studentId) {
+        return ResponseEntity.ok(service.getCasesByStudent(studentId));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<IntegrityCase> getById(
-            @PathVariable Long id) {
-
-        Optional<IntegrityCase> result =
-                integrityCaseService.getCaseById(id);
-
-        return result.map(ResponseEntity::ok)
+    @Operation(summary = "Get case by ID")
+    public ResponseEntity<IntegrityCase> getCaseById(@PathVariable Long id) {
+        return service.getCaseById(id)
+                .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 }

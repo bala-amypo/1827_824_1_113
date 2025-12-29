@@ -2,57 +2,43 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.StudentProfile;
 import com.example.demo.service.StudentProfileService;
-import java.util.List;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
-@RequestMapping("/students")
+@RequestMapping("/api/students")
+@Tag(name = "Student Profile")
 public class StudentProfileController {
+    private final StudentProfileService service;
 
-    private final StudentProfileService studentProfileService;
-
-    public StudentProfileController(StudentProfileService studentProfileService) {
-        this.studentProfileService = studentProfileService;
+    public StudentProfileController(StudentProfileService service) {
+        this.service = service;
     }
 
     @PostMapping
-    public ResponseEntity<StudentProfile> create(
-            @RequestBody StudentProfile studentProfile) {
-
-        return ResponseEntity.ok(
-                studentProfileService.createStudent(studentProfile)
-        );
+    @Operation(summary = "Create student")
+    public ResponseEntity<StudentProfile> createStudent(@RequestBody StudentProfile student) {
+        return ResponseEntity.ok(service.createStudent(student));
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StudentProfile> getById(
-            @PathVariable Long id) {
-
-        return ResponseEntity.ok(
-                studentProfileService.getStudentById(id)
-        );
+    @Operation(summary = "Get student by ID")
+    public ResponseEntity<StudentProfile> getStudentById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getStudentById(id));
     }
 
     @GetMapping
-    public ResponseEntity<List<StudentProfile>> getAll() {
-        return ResponseEntity.ok(
-                studentProfileService.getAllStudents()
-        );
+    @Operation(summary = "Get all students")
+    public ResponseEntity<List<StudentProfile>> getAllStudents() {
+        return ResponseEntity.ok(service.getAllStudents());
     }
 
-    @PutMapping("/{id}/repeat-status")
-    public ResponseEntity<StudentProfile> updateRepeatStatus(
-            @PathVariable Long id) {
-
-        return ResponseEntity.ok(
-                studentProfileService.updateRepeatOffenderStatus(id)
-        );
+    @PutMapping("/{id}/repeat-offender")
+    @Operation(summary = "Update repeat offender status")
+    public ResponseEntity<StudentProfile> updateRepeatOffenderStatus(@PathVariable Long id) {
+        return ResponseEntity.ok(service.updateRepeatOffenderStatus(id));
     }
 }
